@@ -1,8 +1,5 @@
 fastapi
 uvicorn
 gunicorn
-tensorflow
 numpy
-requests
 gdown
-
