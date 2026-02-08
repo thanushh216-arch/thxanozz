@@ -8,7 +8,7 @@ import gdown
 app = FastAPI()
 
 MODEL_PATH = "model.pkl"
-FILE_ID = "PASTE_YOUR_FILE_ID_HERE"
+FILE_ID = "1e8aOjV6A9B1ZMakxfcdfSTrq9mj4gglh"
 
 def download_model():
     print("Current directory:", os.getcwd())
