@@ -3,6 +3,7 @@ import os
 import requests
 import numpy as np
 import tensorflow as tf
+from typing import List
 MODEL_URL = "https://drive.google.com/uc?id=1e8aOjV6A9B1ZMakxfcdfSTrq9mj4gglh"
 MODEL_PATH = "model.pkl"
 
@@ -15,10 +16,9 @@ def download_model():
         print("Model downloaded")
 
 download_model()
-import pickle
 
-with open(MODEL_PATH, "rb") as f:
-    model = pickle.load(f)
+
+
 
 
 
