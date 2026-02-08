@@ -15,6 +15,11 @@ def download_model():
         print("Model downloaded")
 
 download_model()
+import pickle
+
+with open(MODEL_PATH, "rb") as f:
+    model = pickle.load(f)
+
 
 
 app = FastAPI()
