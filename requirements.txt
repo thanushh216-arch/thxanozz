@@ -4,4 +4,4 @@ gunicorn
 numpy
 gdown
 dill
-tensorflow
+tensorflow==2.15.0
