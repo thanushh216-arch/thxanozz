@@ -17,11 +17,6 @@ def download_model():
 
 download_model()
 
-
-
-
-
-
 app = FastAPI()
 
 # Load the model once when server starts
