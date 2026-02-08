@@ -4,4 +4,5 @@ gunicorn
 tensorflow
 numpy
 requests
+gdown
 
