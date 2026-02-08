@@ -1,32 +1,32 @@
 import os
-import requests
 import numpy as np
 import tensorflow as tf
 from fastapi import FastAPI
 from typing import List
+import gdown
 
 app = FastAPI()
 
-MODEL_URL = "https://drive.google.com/uc?id=1e8aOjV6A9B1ZMakxfcdfSTrq9mj4gglh"
-MODEL_PATH = "model.pkl"
+MODEL_PATH = "model.h5"
 
+# 🔹 Your Google Drive FILE ID (not full link)
+FILE_ID = "1e8aOjV6A9B1ZMakxfcdfSTrq9mj4gglh"
 
 def download_model():
     if not os.path.exists(MODEL_PATH):
-        print("Downloading model...")
-        r = requests.get(MODEL_URL)
-        with open(MODEL_PATH, "wb") as f:
-            f.write(r.content)
+        print("Downloading model from Google Drive...")
+        gdown.download(
+            f"https://drive.google.com/uc?id={FILE_ID}",
+            MODEL_PATH,
+            quiet=False
+        )
         print("Model downloaded")
 
-# ✅ STEP 1: Download model
 download_model()
 
-# ✅ STEP 2: Ensure file exists before loading
 if not os.path.exists(MODEL_PATH):
-    raise RuntimeError("Model file was not downloaded successfully")
+    raise RuntimeError("Model download failed")
 
-# ✅ STEP 3: Load model
 model = tf.keras.models.load_model(MODEL_PATH)
 
 @app.get("/")
