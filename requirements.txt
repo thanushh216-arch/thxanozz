@@ -3,3 +3,4 @@ uvicorn
 gunicorn
 numpy
 gdown
+dill
