@@ -1,7 +1,8 @@
 fastapi
 uvicorn
 gunicorn
-numpy
+numpy<2.0
 gdown
 dill
-tensorflow==2.15.0
+tensorflow==2.20.0
+
