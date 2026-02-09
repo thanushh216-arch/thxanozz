@@ -1,44 +1,20 @@
 import os
-import pickle
-import numpy as np
-from fastapi import FastAPI
-from typing import List
 import gdown
+from tensorflow.keras.models import load_model
+from fastapi import FastAPI
 
-app = FastAPI()
 
-MODEL_PATH = "model.pkl"
-FILE_ID = "1e8aOjV6A9B1ZMakxfcdfSTrq9mj4gglh"
-
-def download_model():
-    print("Current directory:", os.getcwd())
-    print("Files before download:", os.listdir("."))
-
-    if not os.path.exists(MODEL_PATH):
-        print("Downloading model from Google Drive...")
-        gdown.download(
-            f"https://drive.google.com/uc?id={FILE_ID}",
-            MODEL_PATH,
-            quiet=False
-        )
-
-    print("Files after download:", os.listdir("."))
-
-download_model()
+MODEL_PATH = "model.h5"
+DRIVE_URL = "https://drive.google.com/uc?id=1zs-qoEU2l9hcgo8udYZ6CvdfJV4m3iL0"
 
 if not os.path.exists(MODEL_PATH):
-    raise RuntimeError("❌ model.pkl NOT FOUND after download")
+    print("⬇️ Downloading model from Google Drive...")
+    gdown.download(DRIVE_URL, MODEL_PATH, quiet=False)
 
-print("✅ model.pkl found, loading model...")
+print("✅ Loading model...")
+model = load_model(MODEL_PATH)
+print("🚀 Model loaded successfully")
 
-with open(MODEL_PATH, "rb") as f:
-    model = pickle.load(f)
-
-@app.get("/")
-def home():
-    return {"message": "ML server is running"}
-
-@app.post("/predict")
 def predict(data: List):
     array = np.array(data)
     prediction = model.predict(array)
